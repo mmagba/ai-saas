@@ -43,6 +43,7 @@ const page = () => {
             })
 
             setMessages((current) => ([...current, userMessage, response.data]));
+            form.reset();
 
         } catch (error: any) {
             //need to pay
@@ -66,7 +67,7 @@ const page = () => {
                                     <FormControl>
                                         <Input
                                             disabled={isLoading}
-                                            placeholder="Simple toggle using react hooks?"
+                                            placeholder={messages.length === 0 ? "Simple toggle using react hooks?" : ""}
                                             className='border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                                             {...field}
                                         />

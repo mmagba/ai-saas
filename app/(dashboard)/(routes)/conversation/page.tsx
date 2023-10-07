@@ -42,6 +42,7 @@ const page = () => {
             })
 
             setMessages((current) => ([...current, userMessage, response.data]));
+            form.reset();
 
         } catch (error: any) {
             //need to pay
@@ -65,7 +66,7 @@ const page = () => {
                                     <FormControl>
                                         <Input
                                             disabled={isLoading}
-                                            placeholder="How do I calculate the radius of a circle?"
+                                            placeholder={messages.length === 0 ? "How do I calculate the radius of a circle?" : ""}
                                             className='border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                                             {...field}
                                         />
