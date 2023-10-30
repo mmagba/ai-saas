@@ -8,6 +8,7 @@ import axios from 'axios';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { useRouter } from 'next/navigation';
 
 import { formSchema } from './constants';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -21,6 +22,7 @@ import { UserAvatar } from '@/components/user-avatar';
 import { BotAvatar } from '@/components/bot-avatar';
 
 const page = () => {
+    const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionMessage[]>([]);
     const form = useForm<z.infer<typeof formSchema>>({
         defaultValues: {
@@ -49,7 +51,7 @@ const page = () => {
             //need to pay
             console.log(error);
         } finally {
-            console.log('router refresh');
+            router.refresh();
         }
     };
 

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Music } from 'lucide-react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { formSchema } from './constants';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -17,6 +18,8 @@ import { Loader } from '@/components/loader';
 
 
 const page = () => {
+
+    const router = useRouter();
     const [music, setMusic] = useState<string>();
     const form = useForm<z.infer<typeof formSchema>>({
         defaultValues: {
@@ -30,7 +33,7 @@ const page = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             setMusic(undefined);
-            
+
 
             const response = await axios.post("/api/music", values);
 
@@ -41,7 +44,7 @@ const page = () => {
             //need to pay
             console.log(error);
         } finally {
-            console.log('router refresh');
+            router.refresh();
         }
     };
 

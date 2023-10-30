@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { VideoIcon } from 'lucide-react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { formSchema } from './constants';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -17,6 +18,7 @@ import { Loader } from '@/components/loader';
 
 
 const page = () => {
+    const router = useRouter();
     const [video, setVideo] = useState<string>();
     const form = useForm<z.infer<typeof formSchema>>({
         defaultValues: {
@@ -41,7 +43,7 @@ const page = () => {
             //need to pay
             console.log(error);
         } finally {
-            console.log('router refresh');
+            router.refresh();
         }
     };
 

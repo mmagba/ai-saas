@@ -7,6 +7,7 @@ import { Download, ImageIcon } from 'lucide-react';
 import axios from 'axios';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { amountOptions, formSchema, resolutionOptions } from './constants';
 import { Input } from '@/components/ui/input';
@@ -19,6 +20,7 @@ import { Loader } from '@/components/loader';
 import { Card, CardFooter } from '@/components/ui/card';
 
 const page = () => {
+    const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -47,7 +49,7 @@ const page = () => {
             //need to pay
             console.log(error);
         } finally {
-            console.log('router refresh');
+            router.refresh();
         }
     };
 
