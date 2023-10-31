@@ -15,9 +15,11 @@ import { Button } from '@/components/ui/button';
 import Heading from '@/components/heading';
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 
 const page = () => {
+    const proModal = useProModal();
     const router = useRouter();
     const [video, setVideo] = useState<string>();
     const form = useForm<z.infer<typeof formSchema>>({
@@ -40,8 +42,9 @@ const page = () => {
             form.reset();
 
         } catch (error: any) {
-            //need to pay
-            console.log(error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
         } finally {
             router.refresh();
         }

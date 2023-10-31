@@ -20,9 +20,11 @@ import { Loader } from '@/components/loader';
 import { ChatCompletionMessage } from 'openai/resources/chat/index.mjs';
 import { UserAvatar } from '@/components/user-avatar';
 import { BotAvatar } from '@/components/bot-avatar';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 const page = () => {
     const router = useRouter();
+    const proModal = useProModal();
     const [messages, setMessages] = useState<ChatCompletionMessage[]>([]);
     const form = useForm<z.infer<typeof formSchema>>({
         defaultValues: {
@@ -48,8 +50,9 @@ const page = () => {
             form.reset();
 
         } catch (error: any) {
-            //need to pay
-            console.log(error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
         } finally {
             router.refresh();
         }

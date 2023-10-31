@@ -18,8 +18,10 @@ import Heading from '@/components/heading';
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
 import { Card, CardFooter } from '@/components/ui/card';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 const page = () => {
+    const proModal = useProModal();
     const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
 
@@ -46,8 +48,9 @@ const page = () => {
 
             form.reset();
         } catch (error: any) {
-            //need to pay
-            console.log(error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
         } finally {
             router.refresh();
         }
