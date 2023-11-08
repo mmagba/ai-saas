@@ -1,20 +1,18 @@
-import { Button } from "@/components/ui/button"
-import Link from "next/link";
+import LandingContent from "@/components/landing-content";
+import LandingHero from "@/components/landing-hero";
+import LandingNavbar from "@/components/landing-navbar";
 
 
 export default function Home() {
+
     return (
-        <>
-            <p className='text-6xl'>Hello AI SaaS</p>
-            <div>
-                <Link href={'/sign-up'}>
-                    <Button>Register</Button>
-                </Link>
-                <Link href={'/sign-in'}>
-                    <Button>Login</Button>
-                </Link>
+        <main className="bg-[#111827]">
+            <div className="max-w-screen-xl mx-auto">
+                <LandingNavbar />
+                <LandingHero />
+                <LandingContent />
             </div>
-        </>
+        </main>
 
     )
 }
