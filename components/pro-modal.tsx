@@ -1,6 +1,8 @@
 'use client'
 import { useEffect, useState } from "react";
 import { MessageSquare, ImageIcon, VideoIcon, Music, Code, Check, Zap } from "lucide-react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { useProModal } from "@/hooks/use-pro-modal";
@@ -12,12 +14,28 @@ import { Button } from "./ui/button";
 export const ProModal = () => {
     const proModal = useProModal();
     const [isMounted, setIsMounted] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
     if (!isMounted) {
         return null;
+    }
+
+    const onSubscribe = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get("/api/stripe");
+
+            window.location.href = response.data.url;
+        } catch (error) {
+            toast.error("Something went wrong");
+        } finally {
+            setLoading(false);
+        }
     }
 
 
@@ -78,7 +96,7 @@ export const ProModal = () => {
                     ))}
                 </DialogHeader>
                 <DialogFooter>
-                    <Button size='lg' className="w-full" variant='premium' onClick={proModal.onOpen}>
+                    <Button disabled={loading} onClick={onSubscribe} size="lg" variant="premium" className="w-full">
                         Upgrade
                         <Zap className="fill-white ml-2 w-4 h-4" />
                     </Button>

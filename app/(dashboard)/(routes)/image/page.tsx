@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 import { amountOptions, formSchema, resolutionOptions } from './constants';
 import { Input } from '@/components/ui/input';
@@ -50,6 +51,8 @@ const page = () => {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong");
             }
         } finally {
             router.refresh();

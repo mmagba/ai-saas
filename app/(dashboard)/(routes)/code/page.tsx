@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 import { formSchema } from './constants';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -52,6 +53,8 @@ const page = () => {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong");
             }
         } finally {
             router.refresh();

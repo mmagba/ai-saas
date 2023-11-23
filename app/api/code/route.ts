@@ -4,6 +4,7 @@ import OpenAI from 'openai';
 import { ChatCompletionMessage } from 'openai/resources/chat/index.mjs';
 
 import { checkApiLimit, incrementApiLimit } from '@/lib/api-limit';
+import { checkSubscription } from '@/lib/subscription';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -32,8 +33,9 @@ export async function POST(req: Request) {
         }
 
         const freeTrail = await checkApiLimit();
+        const isPro = await checkSubscription();
 
-        if (!freeTrail) {
+        if (!freeTrail && !isPro) {
             return new NextResponse('Free trail has expired', { status: 403 });
         }
 
@@ -42,7 +44,9 @@ export async function POST(req: Request) {
             messages: [instructionMessage, ...messages],
         });
 
-        await incrementApiLimit();
+        if (!isPro) {
+            await incrementApiLimit();
+        }
 
         return NextResponse.json(response.choices[0].message);
     } catch (error) {
