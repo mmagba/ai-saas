@@ -15,11 +15,11 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Heading } from '../../../../components/heading';
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
 import { Card, CardFooter } from '@/components/ui/card';
 import { useProModal } from '@/hooks/use-pro-modal';
+import { Heading } from '@/components/heading';
 
 const Page = () => {
     const proModal = useProModal();
