@@ -14,7 +14,7 @@ import { formSchema } from './constants';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
 import { ChatCompletionMessage } from 'openai/resources/chat/index.mjs';

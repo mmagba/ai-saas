@@ -8,9 +8,9 @@ interface HeadingProps {
     iconColor?: string;
     bgColor?: string;
 }
+ 
 
-
-const Heading = (props: HeadingProps) => {
+export const Heading = (props: HeadingProps) => {
     return (
         <div className="flex gap-x-3 items-center px-4 lg:px-8 mb-8">
             <div className={cn('p-2 w-fit rounded-md', props.bgColor)}>
@@ -24,5 +24,3 @@ const Heading = (props: HeadingProps) => {
         </div>
     )
 }
-
-export default Heading
