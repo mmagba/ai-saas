@@ -23,7 +23,7 @@ import { UserAvatar } from '@/components/user-avatar';
 import { BotAvatar } from '@/components/bot-avatar';
 import { useProModal } from '@/hooks/use-pro-modal';
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
     const proModal = useProModal();
     const [messages, setMessages] = useState<ChatCompletionMessage[]>([]);
@@ -125,4 +125,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

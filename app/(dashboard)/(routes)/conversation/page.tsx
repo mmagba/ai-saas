@@ -23,7 +23,7 @@ import { BotAvatar } from '@/components/bot-avatar';
 import { useProModal } from '@/hooks/use-pro-modal';
 
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
     const proModal = useProModal();
 
@@ -117,4 +117,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

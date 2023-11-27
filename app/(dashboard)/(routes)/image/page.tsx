@@ -21,7 +21,7 @@ import { Loader } from '@/components/loader';
 import { Card, CardFooter } from '@/components/ui/card';
 import { useProModal } from '@/hooks/use-pro-modal';
 
-const page = () => {
+const Page = () => {
     const proModal = useProModal();
     const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
@@ -161,4 +161,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

@@ -19,7 +19,7 @@ import { Loader } from '@/components/loader';
 import { useProModal } from '@/hooks/use-pro-modal';
 
 
-const page = () => {
+const Page = () => {
     const proModal = useProModal();
     const router = useRouter();
     const [video, setVideo] = useState<string>();
@@ -99,4 +99,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
